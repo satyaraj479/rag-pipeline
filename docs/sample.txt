@@ -1,0 +1,53 @@
+Introduction to Retrieval-Augmented Generation (RAG)
+
+Retrieval-Augmented Generation (RAG) is a technique that combines information retrieval with
+large language models to produce more accurate, grounded, and up-to-date responses.
+
+How RAG Works
+
+A RAG pipeline consists of two main phases:
+
+1. Indexing Phase
+   - Documents are loaded from a source (PDFs, text files, web pages, etc.)
+   - Text is split into smaller chunks using a chunking strategy
+   - Each chunk is converted into a numerical vector (embedding) using an embedding model
+   - Embeddings and their corresponding text are stored in a vector database
+
+2. Query Phase
+   - The user's question is converted into an embedding using the same model
+   - The vector database is searched for the most similar chunks (nearest neighbor search)
+   - Retrieved chunks are assembled into a context window
+   - A language model generates an answer grounded in the retrieved context
+
+Benefits of RAG
+
+- Reduces hallucination by grounding answers in retrieved facts
+- Allows models to access up-to-date or private knowledge without retraining
+- Provides citations and source attribution for generated answers
+- Cost-effective compared to fine-tuning large models
+
+Chunking Strategies
+
+Chunking is the process of splitting documents into smaller pieces for indexing:
+
+- Fixed-size chunking: splits text into chunks of N characters or tokens
+- Recursive chunking: tries to split on natural boundaries (paragraphs, sentences)
+- Semantic chunking: groups semantically similar sentences together
+- Parent-child chunking: indexes small chunks but retrieves larger parent context
+
+Embedding Models
+
+Embedding models convert text into dense vector representations:
+
+- all-MiniLM-L6-v2: fast, lightweight, 384 dimensions, good for general use
+- BAAI/bge-small-en-v1.5: higher quality than MiniLM, same dimensions
+- text-embedding-ada-002: OpenAI's embedding model (requires API key)
+
+Vector Databases
+
+Vector databases are optimized for similarity search over embeddings:
+
+- ChromaDB: lightweight, open-source, runs locally, great for prototyping
+- pgvector: PostgreSQL extension for production workloads
+- Pinecone: managed cloud service for large-scale deployments
+- Weaviate: open-source with rich filtering capabilities

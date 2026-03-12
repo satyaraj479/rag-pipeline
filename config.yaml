@@ -1,0 +1,22 @@
+chunking:
+  strategy: "recursive"    # recursive | parent_child
+  chunk_size: 512
+  chunk_overlap: 64
+
+embedding:
+  model_name: "all-MiniLM-L6-v2"
+  device: null             # null = auto (cpu / cuda / mps)
+  batch_size: 32
+  cache: true
+  cache_dir: ".embedding_cache"
+
+indexing:
+  vector_db: "chroma"
+  collection_name: "documents"
+  distance_metric: "cosine"
+  persist_directory: ".chroma_store"
+
+generation:
+  model: "claude-haiku-4-5-20251001"
+  max_tokens: 1024
+  top_k_results: 5
